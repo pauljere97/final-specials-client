@@ -1,0 +1,26 @@
+.modal-card{
+    padding: 10px;
+    max-height: 90vh;
+}
+.modal-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #f1f1f1;
+    padding: 10px 0;
+    margin-bottom: 5px;
+}
+.modal-header p{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.modal-footer{
+    border-top: 1px solid #f1f1f1;
+    padding: 10px 0;
+    margin-top: 5px;
+}
+iframe{
+    width: 100%;
+    min-height: 70vh;
+}

@@ -1,0 +1,80 @@
+<div class="container">
+    <mat-form-field class="w-100">
+        <mat-label>Date</mat-label>
+        <input matInput [(ngModel)]="date" type="date">
+    </mat-form-field>
+    <input [(ngModel)]="jsonFile" type="file" (input)="readJSON($event['target'])" accept="application/JSON">
+      
+    <table class="table">
+        <thead>
+            <tr>
+                <!-- <th>#</th> -->
+                <th>Time</th>
+                <th>Teams</th>
+                <th class='desk_top'>H</th>
+                <th class='desk_top'>X</th>
+                <th class='desk_top'>A</th>
+                <th class='desk_top'>HT/FT</th>
+                <th class='text-right'>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let element of data; let i = index">
+                <tr>
+                    <td >
+                        <div class="d-flex">
+                            <div class="ribbon" [ngClass]="element['complete'] ? 'success':'failed'"></div>
+                            {{element['start_time']}}
+                        </div>
+                    </td>
+                    <!-- <td class='td_status'>
+                        <div>
+                            <div>
+                                {{element['date']}}
+                            </div>
+                            <div>
+                                {{element['start_time']}}
+                            </div>
+                        </div>
+                    </td> -->
+                    <td>
+                        {{element['home_team']}} - {{element['away_team']}}
+                    </td>
+                    <td class='desk_top'>{{element['home_odds']}}</td>
+                    <td class='desk_top'>{{element['draw_odds']}}</td>
+                    <td class='desk_top'>{{element['away_odds']}}</td>
+                    <td class='desk_top'>{{element['ft_result'] || '-'}} / {{element['ft_result'] || '-'}}</td>
+                    <td class='text-right'>
+                        <button class="btn btn-primary" (click)="showMatch(element)">Edit</button>
+                    </td>
+                </tr>
+                <tr *ngIf="selected_row == element['id']">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class='desk_top'></td>
+                    <td class=' desk_top'></td>
+                    <td class=' desk_top'></td>
+                    <td class=' desk_top'></td>
+                    <td class='text-right'>
+                        <div class="d-flex flex-column">
+                            <div class="group_btns first_half">
+                                <button class="btn" (click)="ht_result = '1'" [ngClass]="ht_result == '1' ? 'btn-primary' : 'btn-secondary'" >1</button>
+                                <button class="btn" (click)="ht_result = 'X'" [ngClass]="ht_result == 'X' ? 'btn-primary' : 'btn-secondary'" >X</button>
+                                <button class="btn" (click)="ht_result = '2'" [ngClass]="ht_result == '2' ? 'btn-primary' : 'btn-secondary'" >2</button>
+                            </div>
+                            <div class="group_btns second_half">
+                                <button class="btn" (click)="ft_result = '1'" [ngClass]="ft_result == '1' ? 'btn-primary' : 'btn-secondary'" >1</button>
+                                <button class="btn" (click)="ft_result = 'X'" [ngClass]="ft_result == 'X' ? 'btn-primary' : 'btn-secondary'" >X</button>
+                                <button class="btn" (click)="ft_result = '2'" [ngClass]="ft_result == '2' ? 'btn-primary' : 'btn-secondary'" >2</button>
+                            </div>
+                        </div>
+                        <button (click)="save_result(element)" class="save_result btn btn-primary">
+                            Save
+                        </button>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

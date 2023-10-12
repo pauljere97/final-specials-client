@@ -1,0 +1,23 @@
+.group_btns > *{
+    margin: 0 3px 3px 0;
+}
+.group_btns{
+    min-width: 120px;
+}
+.save_result{
+    min-width: 120px;
+}
+.ribbon {
+    height: 50px;
+    width: 10px;
+    border-radius: 5px;
+    margin-right: 6px;
+}
+.failed{ background-color: #dc3545 !important; }
+.success{ background: #3CA758 !important; }
+
+@media only screen and (max-width: 640px){
+	.desk_top{
+        display: none !important;
+    }
+}

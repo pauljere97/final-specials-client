@@ -25,3 +25,8 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+run this script in folder with .pem file
+ssh -i "finalspecialsserver.pem" ec2-user@ec2-16-171-199-141.eu-north-1.compute.amazonaws.com 
+java -jar FinalSpecialsServer-0.0.1-SNAPSHOT.jar 
