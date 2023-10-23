@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/utils/api.service';
 
 
@@ -8,18 +9,40 @@ import { ApiService } from 'src/app/utils/api.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  constructor(private api: ApiService,){}
+  constructor(private api: ApiService, private router: Router,) { }
 
-  hide = true;
-  login(e:any){
-    e.preventDefault()
-    const formData = new FormData(e.target);
-    console.log(formData.get("email"))
-    console.log(formData.get("password"))
-    this.api.login(formData).then(res => {
-      console.log(res)
+  is_online:any = false
+  ngOnInit(): void {
+    this.api.get('is_online').then(res => {
+      setTimeout(() => {
+        this.is_online = res
+      }, 1000);
     }).catch(e => {
       console.log(e)
     })
   }
+
+  hide = true;
+  login(e: any) {
+    e.preventDefault()
+    const formData = new FormData(e.target);
+    const obj = {
+      email: formData.get("email"),
+      password: formData.get("password"),
+    }
+    this.api.login(obj).then((res:any) => {
+      if(res['body']){
+        sessionStorage.setItem("UID", res['body'])
+        this.router.navigateByUrl("/inputs")
+      }else{
+        alert("Something went wrong")
+      }
+    }).catch(e => {
+      if(e['error']){
+        alert("invalid logins")
+      }
+      console.log(e)
+    })
+  }
+
 }

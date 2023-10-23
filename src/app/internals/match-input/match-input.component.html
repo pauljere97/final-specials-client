@@ -1,9 +1,9 @@
 <div class="container">
-    <mat-form-field class="w-100">
+    <mat-form-field class="w-100 desk_top">
         <mat-label>Date</mat-label>
         <input matInput [(ngModel)]="date" type="date">
     </mat-form-field>
-    <input [(ngModel)]="jsonFile" type="file" (input)="readJSON($event['target'])" accept="application/JSON">
+    <input class="desk_top" [(ngModel)]="jsonFile" type="file" (input)="readJSON($event['target'])" accept="application/JSON">
       
     <table class="table">
         <thead>
@@ -27,16 +27,6 @@
                             {{element['start_time']}}
                         </div>
                     </td>
-                    <!-- <td class='td_status'>
-                        <div>
-                            <div>
-                                {{element['date']}}
-                            </div>
-                            <div>
-                                {{element['start_time']}}
-                            </div>
-                        </div>
-                    </td> -->
                     <td>
                         {{element['home_team']}} - {{element['away_team']}}
                     </td>
@@ -51,11 +41,11 @@
                 <tr *ngIf="selected_row == element['id']">
                     <td></td>
                     <td></td>
-                    <td></td>
                     <td class='desk_top'></td>
-                    <td class=' desk_top'></td>
-                    <td class=' desk_top'></td>
-                    <td class=' desk_top'></td>
+                    <td class='desk_top'></td>
+                    <td class='desk_top'></td>
+                    <td class='desk_top'></td>
+                    <td class='desk_top'></td>
                     <td class='text-right'>
                         <div class="d-flex flex-column">
                             <div class="group_btns first_half">

@@ -34,7 +34,9 @@ export class MatchInputComponent implements OnInit {
         element['complete'] = element['ht_result'] && element['ht_result']
         console.log(element)
         return true
-      }).sort((a: any, b: any) => (a.start_time > b.start_time) ? 1 : ((b.start_time > a.start_time) ? -1 : 0))
+      })
+      this.data = this.data.sort((a: any, b: any) => (a.start_time > b.start_time) ? 1 : ((b.start_time > a.start_time) ? -1 : 0))
+      this.data = this.data.sort((a: any, b: any) => (a.complete > b.complete) ? 1 : ((b.complete > a.complete) ? -1 : 0))
     }).catch(e => {
       console.log(e)
     })
@@ -66,6 +68,7 @@ export class MatchInputComponent implements OnInit {
 
     this.api.put('update_matches', [match]).then((res: any) => {
       this.ngOnInit()
+      this.selected_row = 0
       this.ht_result = "0"
       this.ft_result = "0"
     }).catch((e: any) => {
@@ -129,12 +132,12 @@ export class MatchInputComponent implements OnInit {
     let to_update_ids:any = []
     let new_records:any = []
     data.forEach((element:any) => {
-      let record = data.find((e:any) => element['away_team'] === e['away_team'] && element['home_team'] === e['home_team'] && this.date === e['date'])
+      let record:any = this.data.find((e:any) => element['url'] === e['url'] && this.date === e['date'])
       if (record) {
         if (!element['start_time'] && element['ft_result']) {
           record['ft_result'] = element['ft_result']
           element = record
-          if (!to_update_ids.includes(element['id'])) {
+          if (!to_update_ids.includes(element['id']) && element['id']) {
             to_update_ids.push(element['id'])
           }
         }
