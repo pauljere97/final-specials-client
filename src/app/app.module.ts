@@ -9,6 +9,8 @@ import { LoginComponent } from './externals/login/login.component';
 import { MatchInputComponent } from './internals/match-input/match-input.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ShowMatchComponent } from './dialogs/show-match/show-match.component';
+import { NavbarComponent } from './internals/components/navbar/navbar.component';
+import { SidebarComponent } from './internals/components/sidebar/sidebar.component';
 
 @NgModule({
   imports: [
@@ -25,6 +27,8 @@ import { ShowMatchComponent } from './dialogs/show-match/show-match.component';
     AppComponent,
     MatchInputComponent,
     ShowMatchComponent,
+    NavbarComponent,
+    SidebarComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -29,7 +29,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 run this script in folder with .pem file
 ssh -i "finalspecialsserver.pem" ec2-user@ec2-16-171-199-141.eu-north-1.compute.amazonaws.com 
-java -jar FinalSpecialsServer-0.0.1-SNAPSHOT.jar 
+java -jar app.jar 
 
 uploading
-scp -i ~/Workshop/Slowfade/Final-Specials-Server/build/libs/finalspecialsserver.pem FinalSpecialsServer-0.0.1-SNAPSHOT.jar ec2-user@ec2-16-171-199-141.eu-north-1.compute.amazonaws.com:/home/ec2-user
+scp -i ~/Workshop/Slowfade/Final-Specials-Server/build/libs/finalspecialsserver.pem app.jar ec2-user@ec2-16-171-199-141.eu-north-1.compute.amazonaws.com:/home/ec2-user
+

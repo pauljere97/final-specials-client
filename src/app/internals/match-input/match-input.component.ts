@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ShowMatchComponent } from 'src/app/dialogs/show-match/show-match.component';
 import { ApiService } from 'src/app/utils/api.service';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-match-input',
@@ -17,7 +18,7 @@ export class MatchInputComponent implements OnInit {
   year: any = new Date().getFullYear();
   date = ""
 
-  constructor(private api: ApiService, private dialog: MatDialog,) {
+  constructor(private api: ApiService, private dialog: MatDialog, private router: Router) {
     if (this.month < 10) this.month = "0" + this.month;
     if (this.day < 10) this.day = "0" + this.day;
 
@@ -28,16 +29,20 @@ export class MatchInputComponent implements OnInit {
     this.fetchMatches()
   }
 
+  change_date(){
+    this.fetchMatches(this.date)
+  }
+
   fetchMatches(date = this.date): void {
     this.api.get('get_day_matches?date=' + date).then((res: any) => {
       this.data = res.filter((element: any) => {
         element['complete'] = element['ht_result'] && element['ht_result']
-        console.log(element)
         return true
       })
       this.data = this.data.sort((a: any, b: any) => (a.start_time > b.start_time) ? 1 : ((b.start_time > a.start_time) ? -1 : 0))
       this.data = this.data.sort((a: any, b: any) => (a.complete > b.complete) ? 1 : ((b.complete > a.complete) ? -1 : 0))
     }).catch(e => {
+      this.router.navigateByUrl("/login")
       console.log(e)
     })
   }
@@ -73,6 +78,7 @@ export class MatchInputComponent implements OnInit {
       this.ft_result = "0"
     }).catch((e: any) => {
       console.log(e)
+      this.router.navigateByUrl("/login")
     })
   }
 

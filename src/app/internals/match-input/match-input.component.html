@@ -1,8 +1,5 @@
 <div class="container">
-    <mat-form-field class="w-100 desk_top">
-        <mat-label>Date</mat-label>
-        <input matInput [(ngModel)]="date" type="date">
-    </mat-form-field>
+    <input  [(ngModel)]="date" type="date" (change)="change_date()">
     <input class="desk_top" [(ngModel)]="jsonFile" type="file" (input)="readJSON($event['target'])" accept="application/JSON">
       
     <table class="table">
