@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ShowMatchComponent } from './dialogs/show-match/show-match.component';
 import { NavbarComponent } from './internals/components/navbar/navbar.component';
 import { SidebarComponent } from './internals/components/sidebar/sidebar.component';
+import { InternalsComponent } from './internals/internals.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { SidebarComponent } from './internals/components/sidebar/sidebar.compone
     ShowMatchComponent,
     NavbarComponent,
     SidebarComponent,
+    InternalsComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
