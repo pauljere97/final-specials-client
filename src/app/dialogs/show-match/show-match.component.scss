@@ -1,3 +1,6 @@
+p{
+    margin-bottom: 0;
+}
 .modal-card{
     padding: 10px;
     max-height: 90vh;
@@ -23,4 +26,21 @@
 iframe{
     width: 100%;
     min-height: 70vh;
+}
+
+.group_btns > *{
+    margin: 0 3px 3px 0;
+}
+.group_btns{
+    min-width: 120px;
+}
+.save_result{
+    min-width: 120px;
+}
+
+.input_area{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 5px 0;
 }

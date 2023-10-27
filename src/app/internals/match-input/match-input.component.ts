@@ -48,21 +48,25 @@ export class MatchInputComponent implements OnInit {
   }
 
   showMatch(match: any) {
-    if (this.selected_row == match['id']) {
-      this.selected_row = 0
-      this.ht_result = "0"
-      this.ft_result = "0"
-      return
-    }
+    // if (this.selected_row == match['id']) {
+    //   this.selected_row = 0
+    //   this.ht_result = "0"
+    //   this.ft_result = "0"
+    //   return
+    // }
 
-    this.ht_result = match['ht_result']
-    this.ft_result = match['ft_result']
-    this.selected_row = match['id']
+    // this.ht_result = match['ht_result']
+    // this.ft_result = match['ft_result']
+    // this.selected_row = match['id']
     const dialogRef = this.dialog.open(ShowMatchComponent, {
       width: "700px",
-      data: match['url']
+      data: match
     });
-    dialogRef.afterClosed().subscribe((res: any) => { });
+    dialogRef.afterClosed().subscribe((res: any) => {
+      if(res){
+        this.ngOnInit()
+      }
+     });
   }
 
   ht_result = "0"
