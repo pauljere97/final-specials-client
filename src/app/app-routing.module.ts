@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './externals/login/login.component';
-import { MatchInputComponent } from './internals/match-input/match-input.component';
+// import { MatchInputComponent } from './internals/match-input/match-input.component';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { InternalsComponent } from './internals/internals.component';
+import { InternalsModule } from './internals/internals.module';
+import { MatchInputComponent } from './internals/match-input/match-input.component';
 
 const routes: Routes = [
   {
@@ -19,6 +22,26 @@ const routes: Routes = [
     path: "inputs",
     component: MatchInputComponent,
   },
+  // {
+  //   path: "page/:page",
+  //   component: InternalsComponent,
+  // },
+  {
+    path: "pagssse/:page",
+    component: InternalsComponent,
+    // canActivate: [AuthGuardService],
+    // children: [
+    //   {
+    //     path: "",
+    //     // loadChildren: "./internals/internals.module#InternalsModule",
+    //     loadChildren: InternalsModule,
+    //   },
+    // ],
+  },
+  {
+    path: 'page', loadChildren:() => import('./internals/internals.module').then(m => m.InternalsModule)  
+  }
+  
 ];
 
 @NgModule({

@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./internals.component.scss']
 })
 export class InternalsComponent {
-
+  ngOnInit(): void {
+    console.log("HERE LANDED")
+  }
 }

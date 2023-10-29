@@ -1,8 +1,9 @@
-<div class="modal-card">
+<div class="modal-card" id="modal" #mod>
     <div class="modal-header">
         <p>Edit Match</p>
         <i class="material-icons" (click)="dialogRef.close()">close</i>
     </div>
+   
     <div class="input_area">
         <div class="d-flex flex-column">
             <div class="group_btns first_half d-flex align-items-center">
@@ -25,7 +26,10 @@
             </button>
         </div>
     </div>
-    <iframe [src]="iframe_link" frameborder="0"></iframe>
+    <div id="iframe_wrapper">
+        <iframe id="iframe" [src]="iframe_link" frameborder="0"></iframe>
+    </div>
+    
     <!-- <div class="modal-footer">
         <button mat-raised-button color="warn" (click)="dialogRef.close()">Close</button>
     </div> -->

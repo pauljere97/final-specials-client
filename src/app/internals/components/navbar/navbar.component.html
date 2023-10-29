@@ -1,1 +1,11 @@
-<p>navbar works!</p>
+<div class="nav_bar" *ngIf="navbar">
+    <div class="top_bar">
+        <button (click)="sidebar = !sidebar">
+            <i class="material-icons">menu</i>
+        </button>
+        <button>
+            <i class="material-icons">power_settings_new</i>
+        </button>
+    </div>
+    <app-sidebar *ngIf="sidebar"></app-sidebar>
+</div>

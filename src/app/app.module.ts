@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material';
 import { LoginComponent } from './externals/login/login.component';
-import { MatchInputComponent } from './internals/match-input/match-input.component';
+// import { MatchInputComponent } from './internals/match-input/match-input.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ShowMatchComponent } from './dialogs/show-match/show-match.component';
 import { NavbarComponent } from './internals/components/navbar/navbar.component';
@@ -26,7 +26,7 @@ import { InternalsComponent } from './internals/internals.component';
   declarations: [
     LoginComponent,
     AppComponent,
-    MatchInputComponent,
+    // MatchInputComponent,
     ShowMatchComponent,
     NavbarComponent,
     SidebarComponent,

@@ -32,15 +32,16 @@ export class MatchInputComponent implements OnInit {
   change_date(){
     this.fetchMatches(this.date)
   }
-
+  complete = 0
   fetchMatches(date = this.date): void {
     this.api.get('get_day_matches?date=' + date).then((res: any) => {
       this.data = res.filter((element: any) => {
-        element['complete'] = element['ht_result'] && element['ht_result']
+        element['complete'] = element['ht_result'] && element['ft_result']
         return true
       })
       this.data = this.data.sort((a: any, b: any) => (a.start_time > b.start_time) ? 1 : ((b.start_time > a.start_time) ? -1 : 0))
       this.data = this.data.sort((a: any, b: any) => (a.complete > b.complete) ? 1 : ((b.complete > a.complete) ? -1 : 0))
+      this.complete = this.data.filter((e:any) => e.complete).length
     }).catch(e => {
       this.router.navigateByUrl("/login")
       console.log(e)

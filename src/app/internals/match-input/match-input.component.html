@@ -1,7 +1,10 @@
 <div class="container">
-    <input  [(ngModel)]="date" type="date" (change)="change_date()">
+    <input style="margin-top: 70px;" [(ngModel)]="date" type="date" (change)="change_date()">
     <input class="desk_top" [(ngModel)]="jsonFile" type="file" (input)="readJSON($event['target'])" accept="application/JSON">
-      
+    <div class="wrapper_prog">
+        <div class="prog_line" [style]="'width:' + (complete / data.length) * 100 + '%'"></div>
+        <p class="prog_text">{{complete}}/{{data.length}}</p>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -30,7 +33,7 @@
                     <td class='desk_top'>{{element['home_odds']}}</td>
                     <td class='desk_top'>{{element['draw_odds']}}</td>
                     <td class='desk_top'>{{element['away_odds']}}</td>
-                    <td class='desk_top'>{{element['ft_result'] || '-'}} / {{element['ft_result'] || '-'}}</td>
+                    <td class='desk_top'>{{element['ht_result'] || '-'}} / {{element['ft_result'] || '-'}}</td>
                     <td class='text-right'>
                         <button class="btn btn-primary" (click)="showMatch(element)">Edit</button>
                     </td>

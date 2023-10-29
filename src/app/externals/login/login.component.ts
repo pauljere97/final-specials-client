@@ -14,9 +14,7 @@ export class LoginComponent {
   is_online:any = false
   ngOnInit(): void {
     this.api.get('is_online').then(res => {
-      setTimeout(() => {
-        this.is_online = res
-      }, 1000);
+      this.is_online = res
     }).catch(e => {
       console.log(e)
     })
@@ -33,7 +31,8 @@ export class LoginComponent {
     this.api.login(obj).then((res:any) => {
       if(res['body']){
         sessionStorage.setItem("UID", res['body'])
-        this.router.navigateByUrl("/inputs")
+        location.href = location.origin + '/#/inputs'
+        window.location.reload()
       }else{
         alert("Something went wrong")
       }

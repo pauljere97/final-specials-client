@@ -24,6 +24,13 @@ export class ShowMatchComponent {
   ngOnInit(): void {
     this.ht_result = this.data['ht_result']
     this.ft_result = this.data['ft_result']
+    setTimeout(() => {
+      const element = document.getElementById('modal')
+      if(element){
+        console.log("SCROLLS")
+        element.scrollTop = 0
+      }
+    }, 1000);
   }
 
   save_result(match: any) {
