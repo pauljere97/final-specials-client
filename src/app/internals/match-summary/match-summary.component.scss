@@ -1,0 +1,36 @@
+.wrapper_prog {
+    background-color: #dc3545;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    padding: 6px;
+    min-width: 55vw;
+}
+.prog_line {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: #3ca758;
+    transition: 1s;
+}
+.prog_text {
+    z-index: 2;
+    position: relative;
+    text-align: center;
+    color: white;
+    font-weight: 500;
+}
+
+tr{
+    cursor: pointer;
+}
+
+tr:hover{
+    td{
+        transition: 0.2s;
+        color: white;
+        background-color: #2196f3;
+    }
+    cursor: pointer;
+}

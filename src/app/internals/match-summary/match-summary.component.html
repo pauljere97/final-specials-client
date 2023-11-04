@@ -1,0 +1,35 @@
+<div class="container">
+    <br />
+    <br />
+    <br />
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Matches</th>
+                <!-- <th class="text-right">Visit</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let element of summary; let i = index">
+                <tr (click)="redirect(element['date'])">
+                    <td>{{ moment(element['date']).toDate().toDateString() }}</td>
+                    <td>
+                        <div class="wrapper_prog">
+                            <div
+                                class="prog_line"
+                                [style]="'width:' + (element['complete'] / element['total']) * 100 + '%'"
+                            ></div>
+                            <span class="prog_text">{{
+                                element['complete'] == element['total']
+                                    ? element['total']
+                                    : element['complete'] + '/' + element['total']
+                            }}</span>
+                        </div>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

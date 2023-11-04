@@ -1,6 +1,6 @@
 <div class="container">
-    <input style="margin-top: 70px;" [(ngModel)]="date" type="date" (change)="change_date()">
-    <input class="desk_top" [(ngModel)]="jsonFile" type="file" (input)="readJSON($event['target'])" accept="application/JSON">
+    <input style="margin-top: 80px;" class="inputs" [(ngModel)]="date" type="date" (change)="change_date()">
+    <input class="desk_top inputs" [(ngModel)]="jsonFile" type="file" (input)="readJSON($event['target'])" accept="application/JSON">
     <div class="wrapper_prog">
         <div class="prog_line" [style]="'width:' + (complete / data.length) * 100 + '%'"></div>
         <p class="prog_text">{{complete}}/{{data.length}}</p>
@@ -14,13 +14,12 @@
                 <th class='desk_top'>H</th>
                 <th class='desk_top'>X</th>
                 <th class='desk_top'>A</th>
-                <th class='desk_top'>HT/FT</th>
-                <th class='text-right'>Actions</th>
+                <th class=''>HT/FT</th>
             </tr>
         </thead>
         <tbody>
             <ng-container *ngFor="let element of data; let i = index">
-                <tr>
+                <tr (click)="showMatch(element)">
                     <td >
                         <div class="d-flex">
                             <div class="ribbon" [ngClass]="element['complete'] ? 'success':'failed'"></div>
@@ -33,36 +32,10 @@
                     <td class='desk_top'>{{element['home_odds']}}</td>
                     <td class='desk_top'>{{element['draw_odds']}}</td>
                     <td class='desk_top'>{{element['away_odds']}}</td>
-                    <td class='desk_top'>{{element['ht_result'] || '-'}} / {{element['ft_result'] || '-'}}</td>
-                    <td class='text-right'>
+                    <td class=''>{{element['ht_result'] || '-'}} / {{element['ft_result'] || '-'}}</td>
+                    <!-- <td class='text-right'>
                         <button class="btn btn-primary" (click)="showMatch(element)">Edit</button>
-                    </td>
-                </tr>
-                <tr *ngIf="selected_row == element['id']">
-                    <td></td>
-                    <td></td>
-                    <td class='desk_top'></td>
-                    <td class='desk_top'></td>
-                    <td class='desk_top'></td>
-                    <td class='desk_top'></td>
-                    <td class='desk_top'></td>
-                    <td class='text-right'>
-                        <div class="d-flex flex-column">
-                            <div class="group_btns first_half">
-                                <button class="btn" (click)="ht_result = '1'" [ngClass]="ht_result == '1' ? 'btn-primary' : 'btn-secondary'" >1</button>
-                                <button class="btn" (click)="ht_result = 'X'" [ngClass]="ht_result == 'X' ? 'btn-primary' : 'btn-secondary'" >X</button>
-                                <button class="btn" (click)="ht_result = '2'" [ngClass]="ht_result == '2' ? 'btn-primary' : 'btn-secondary'" >2</button>
-                            </div>
-                            <div class="group_btns second_half">
-                                <button class="btn" (click)="ft_result = '1'" [ngClass]="ft_result == '1' ? 'btn-primary' : 'btn-secondary'" >1</button>
-                                <button class="btn" (click)="ft_result = 'X'" [ngClass]="ft_result == 'X' ? 'btn-primary' : 'btn-secondary'" >X</button>
-                                <button class="btn" (click)="ft_result = '2'" [ngClass]="ft_result == '2' ? 'btn-primary' : 'btn-secondary'" >2</button>
-                            </div>
-                        </div>
-                        <button (click)="save_result(element)" class="save_result btn btn-primary">
-                            Save
-                        </button>
-                    </td>
+                    </td> -->
                 </tr>
             </ng-container>
         </tbody>

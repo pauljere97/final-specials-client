@@ -1,11 +1,16 @@
-<div class="nav_bar" *ngIf="navbar">
+<div class="nav_bar" *ngIf="navbar" >
     <div class="top_bar">
         <button (click)="sidebar = !sidebar">
             <i class="material-icons">menu</i>
         </button>
-        <button>
+        <button (click)="logout()">
             <i class="material-icons">power_settings_new</i>
         </button>
     </div>
-    <app-sidebar *ngIf="sidebar"></app-sidebar>
+    <div class="sidebar" *ngIf="sidebar" (click)="closeSide()">
+        <div class="pad" (click)="$event.stopPropagation()">
+            <p (click)="redirect('summary')">Match Summary</p>
+            <p (click)="logout()">Log Out</p>
+        </div>
+    </div>
 </div>

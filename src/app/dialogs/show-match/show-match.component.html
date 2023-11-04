@@ -3,25 +3,61 @@
         <p>Edit Match</p>
         <i class="material-icons" (click)="dialogRef.close()">close</i>
     </div>
-   
+
     <div class="input_area">
         <div class="d-flex flex-column">
             <div class="group_btns first_half d-flex align-items-center">
-                <button class="btn" (click)="ht_result = '1'" [ngClass]="ht_result == '1' ? 'btn-primary' : 'btn-secondary'" >1</button>
-                <button class="btn" (click)="ht_result = 'X'" [ngClass]="ht_result == 'X' ? 'btn-primary' : 'btn-secondary'" >X</button>
-                <button class="btn" (click)="ht_result = '2'" [ngClass]="ht_result == '2' ? 'btn-primary' : 'btn-secondary'" >2</button>
+                <button
+                    class="btn"
+                    (click)="ht_result = '1'"
+                    [ngClass]="ht_result == '1' ? 'btn-primary' : 'btn-secondary'"
+                >
+                    1
+                </button>
+                <button
+                    class="btn"
+                    (click)="ht_result = 'X'"
+                    [ngClass]="ht_result == 'X' ? 'btn-primary' : 'btn-secondary'"
+                >
+                    X
+                </button>
+                <button
+                    class="btn"
+                    (click)="ht_result = '2'"
+                    [ngClass]="ht_result == '2' ? 'btn-primary' : 'btn-secondary'"
+                >
+                    2
+                </button>
             </div>
             <div class="group_btns second_half d-flex">
-                <button class="btn" (click)="ft_result = '1'" [ngClass]="ft_result == '1' ? 'btn-primary' : 'btn-secondary'" >1</button>
-                <button class="btn" (click)="ft_result = 'X'" [ngClass]="ft_result == 'X' ? 'btn-primary' : 'btn-secondary'" >X</button>
-                <button class="btn" (click)="ft_result = '2'" [ngClass]="ft_result == '2' ? 'btn-primary' : 'btn-secondary'" >2</button>
+                <button
+                    class="btn"
+                    (click)="ft_result = '1'"
+                    [ngClass]="ft_result == '1' ? 'btn-primary' : 'btn-secondary'"
+                >
+                    1
+                </button>
+                <button
+                    class="btn"
+                    (click)="ft_result = 'X'"
+                    [ngClass]="ft_result == 'X' ? 'btn-primary' : 'btn-secondary'"
+                >
+                    X
+                </button>
+                <button
+                    class="btn"
+                    (click)="ft_result = '2'"
+                    [ngClass]="ft_result == '2' ? 'btn-primary' : 'btn-secondary'"
+                >
+                    2
+                </button>
             </div>
         </div>
         <div class="d-flex flex-column">
-            <button (click)="save_result(data)" style="margin-bottom: 1px;" class="save_result btn btn-primary">
+            <button (click)="save_result(data)" style="margin-bottom: 1px" class="save_result btn btn-primary">
                 Save
             </button>
-            <button (click)="save_result(data)" style="margin-top: 1px;" class=" save_result btn btn-danger">
+            <button (click)="delete_result(data['id'])" style="margin-top: 1px" class="save_result btn btn-danger">
                 Delete
             </button>
         </div>
@@ -29,8 +65,4 @@
     <div id="iframe_wrapper">
         <iframe id="iframe" [src]="iframe_link" frameborder="0"></iframe>
     </div>
-    
-    <!-- <div class="modal-footer">
-        <button mat-raised-button color="warn" (click)="dialogRef.close()">Close</button>
-    </div> -->
 </div>

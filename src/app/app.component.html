@@ -1,2 +1,5 @@
 <app-navbar></app-navbar>
+<div *ngIf="showLoader$ | async as showLoader">
+    <app-loading-screen *ngIf="showLoader"></app-loading-screen>
+</div>
 <router-outlet></router-outlet>

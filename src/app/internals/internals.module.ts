@@ -18,6 +18,8 @@ import { BrowserModule } from "@angular/platform-browser";
 import { AppRoutingModule } from "../app-routing.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
+import { MatchSummaryComponent } from './match-summary/match-summary.component';
+// import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 // import { AdminAdministratorLocationsComponent } from './role-components/admin-administrator-locations/admin-administrator-locations.component';
 @NgModule({
     imports: [
@@ -35,7 +37,9 @@ import { HttpClientModule } from "@angular/common/http";
         // HttpClientModule,
     ],
     declarations: [
-        MatchInputComponent
+        MatchInputComponent,
+        MatchSummaryComponent,
+        // LoadingScreenComponent
         // StudentMessagesComponent,
         // StudentSettingsComponent,
         // StudentComponent,
