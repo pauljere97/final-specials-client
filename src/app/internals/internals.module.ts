@@ -19,6 +19,8 @@ import { AppRoutingModule } from "../app-routing.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
 import { MatchSummaryComponent } from './match-summary/match-summary.component';
+import { OddsInputComponent } from './odds-input/odds-input.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 // import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 // import { AdminAdministratorLocationsComponent } from './role-components/admin-administrator-locations/admin-administrator-locations.component';
 @NgModule({
@@ -39,6 +41,8 @@ import { MatchSummaryComponent } from './match-summary/match-summary.component';
     declarations: [
         MatchInputComponent,
         MatchSummaryComponent,
+        OddsInputComponent,
+        DashboardComponent,
         // LoadingScreenComponent
         // StudentMessagesComponent,
         // StudentSettingsComponent,

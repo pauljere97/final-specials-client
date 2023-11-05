@@ -1,0 +1,21 @@
+.graphs {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 45vw;
+    margin: 10px;
+    padding: 0 10px;
+    border: none;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    position: relative // color: rgb(13, 109, 253);
+}
+
+@media only screen and (max-width: 700px) {
+    .card {
+        width: 95vw;
+    }
+}

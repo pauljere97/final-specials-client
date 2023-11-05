@@ -13,8 +13,8 @@ export class LoginComponent {
 
     is_online: any = false
     ngOnInit(): void {
-        this.api.get('is_online').then(res => {
-            this.is_online = res
+        this.api.get('is_online').then((res: any) => {
+            this.is_online = res['result']
         }).catch(e => {
             console.log(e)
         })
@@ -24,7 +24,7 @@ export class LoginComponent {
     login(e: any) {
         e.preventDefault()
 
-        const emails: any = ['root@user.com', 'maureen@user.com', 'rootUser']
+        const emails: any = ['root@user.com', 'maureen@user.com', 'rootUser', 'Maureen@user.com',]
 
         const formData = new FormData(e.target);
         const obj = {

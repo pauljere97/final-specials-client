@@ -1,0 +1,196 @@
+<div class="container">
+    <div class="collected">
+        <div class="card">
+            <p>Homes</p>
+            <div>
+                <div>
+                    <span>1/1</span>
+                    <span>{{homes.odd11.toFixed(1)}}</span>
+                </div>
+                <div>
+                    <span>1/X</span>
+                    <span>{{homes.odd1x.toFixed(1)}}</span>
+                </div>
+                <div>
+                    <span>1/2</span>
+                    <span>{{homes.odd12.toFixed(1)}}</span>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <span>X/1</span>
+                    <span>{{homes.oddx1.toFixed(1)}}</span>
+                </div>
+                <div>
+                    <span>X/X</span>
+                    <span>{{homes.oddxx.toFixed(1)}}</span>
+                </div>
+                <div>
+                    <span>X/2</span>
+                    <span>{{homes.oddx2.toFixed(1)}}</span>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <span>2/1</span>
+                    <span>{{homes.odd21.toFixed(1)}}</span>
+                </div>
+                <div>
+                    <span>2/X</span>
+                    <span>{{homes.odd2x.toFixed(1)}}</span>
+                </div>
+                <div>
+                    <span>2/2</span>
+                    <span>{{homes.odd22.toFixed(1)}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <p>Draws</p>
+            <div>
+                <div>
+                    <span>1/1</span>
+                    <span>{{draws.odd11.toFixed(1)}}</span>
+                </div>
+                <div>
+                    <span>1/X</span>
+                    <span>{{draws.odd1x.toFixed(1)}}</span>
+                </div>
+                <div>
+                    <span>1/2</span>
+                    <span>{{draws.odd12.toFixed(1)}}</span>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <span>X/1</span>
+                    <span>{{draws.oddx1.toFixed(1)}}</span>
+                </div>
+                <div>
+                    <span>X/X</span>
+                    <span>{{draws.oddxx.toFixed(1)}}</span>
+                </div>
+                <div>
+                    <span>X/2</span>
+                    <span>{{draws.oddx2.toFixed(1)}}</span>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <span>2/1</span>
+                    <span>{{draws.odd21.toFixed(1)}}</span>
+                </div>
+                <div>
+                    <span>2/X</span>
+                    <span>{{draws.odd2x.toFixed(1)}}</span>
+                </div>
+                <div>
+                    <span>2/2</span>
+                    <span>{{draws.odd22.toFixed(1)}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <p>Aways</p>
+            <div>
+                <div>
+                    <span>1/1</span>
+                    <span>{{aways.odd11.toFixed(1)}}</span>
+                </div>
+                <div>
+                    <span>1/X</span>
+                    <span>{{aways.odd1x.toFixed(1)}}</span>
+                </div>
+                <div>
+                    <span>1/2</span>
+                    <span>{{aways.odd12.toFixed(1)}}</span>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <span>X/1</span>
+                    <span>{{aways.oddx1.toFixed(1)}}</span>
+                </div>
+                <div>
+                    <span>X/X</span>
+                    <span>{{aways.oddxx.toFixed(1)}}</span>
+                </div>
+                <div>
+                    <span>X/2</span>
+                    <span>{{aways.oddx2.toFixed(1)}}</span>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <span>2/1</span>
+                    <span>{{aways.odd21.toFixed(1)}}</span>
+                </div>
+                <div>
+                    <span>2/X</span>
+                    <span>{{aways.odd2x.toFixed(1)}}</span>
+                </div>
+                <div>
+                    <span>2/2</span>
+                    <span>{{aways.odd22.toFixed(1)}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="inputs">
+        <div class="card" style="width: 240px;">
+            <mat-form-field>
+                <mat-label>Type</mat-label>
+                <select matNativeControl required [(ngModel)]="payload.type">
+                    <option value="1">Home</option>
+                    <option value="X">Draw</option>
+                    <option value="2">Away</option>
+                </select>
+            </mat-form-field>
+            <div class="odds_inputs">
+                <div>
+                    <mat-form-field>
+                        <mat-label>1/1</mat-label>
+                        <input matInput type="tel" [(ngModel)]="payload.odd11">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>1/X</mat-label>
+                        <input matInput type="tel" [(ngModel)]="payload.odd1x">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>1/2</mat-label>
+                        <input matInput type="tel" [(ngModel)]="payload.odd12">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <mat-label>X/1</mat-label>
+                        <input matInput type="tel" [(ngModel)]="payload.oddx1">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>X/X</mat-label>
+                        <input matInput type="tel" [(ngModel)]="payload.oddxx">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>X/2</mat-label>
+                        <input matInput type="tel" [(ngModel)]="payload.oddx2">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <mat-label>2/1</mat-label>
+                        <input matInput type="tel" [(ngModel)]="payload.odd21">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>2/X</mat-label>
+                        <input matInput type="tel" [(ngModel)]="payload.odd2x">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>2/2</mat-label>
+                        <input matInput type="tel" [(ngModel)]="payload.odd22">
+                    </mat-form-field>
+                </div>
+            </div>
+            <button class="btn btn-success" (click)="save()">Save</button>
+        </div>
+    </div>
+</div>

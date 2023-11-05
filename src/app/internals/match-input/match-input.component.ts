@@ -149,12 +149,7 @@ export class MatchInputComponent implements OnInit {
             obj['draw_odds'] = element['draw_odds'];
             obj['away_odds'] = element['away_odds'];
 
-            if (
-                +element['home_odds'] >= 2 &&
-                +element['home_odds'] < 3 &&
-                +element['away_odds'] >= 2 &&
-                +element['away_odds']
-            )
+            if (+element['home_odds'] >= 2 && +element['home_odds'] < 3 && +element['away_odds'] >= 2)
                 result.push(obj);
             else if (+element['home_odds'] <= 1.6) result.push(obj);
             else if (+element['away_odds'] <= 1.7) result.push(obj);

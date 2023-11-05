@@ -1,4 +1,4 @@
-<div class="nav_bar" *ngIf="navbar" >
+<div class="nav_bar" *ngIf="navbar">
     <div class="top_bar">
         <button (click)="sidebar = !sidebar">
             <i class="material-icons">menu</i>
@@ -9,7 +9,9 @@
     </div>
     <div class="sidebar" *ngIf="sidebar" (click)="closeSide()">
         <div class="pad" (click)="$event.stopPropagation()">
+            <p (click)="redirect('dashboard')">Dashboard</p>
             <p (click)="redirect('summary')">Match Summary</p>
+            <p (click)="redirect('odds')">Odds Input</p>
             <p (click)="logout()">Log Out</p>
         </div>
     </div>

@@ -8,6 +8,8 @@ import { InternalsComponent } from './internals/internals.component';
 import { InternalsModule } from './internals/internals.module';
 import { MatchInputComponent } from './internals/match-input/match-input.component';
 import { MatchSummaryComponent } from './internals/match-summary/match-summary.component';
+import { OddsInputComponent } from './internals/odds-input/odds-input.component';
+import { DashboardComponent } from './internals/dashboard/dashboard.component';
 
 const routes: Routes = [
     {
@@ -15,16 +17,12 @@ const routes: Routes = [
         redirectTo: 'login',
         pathMatch: 'full',
     },
-    {
-        path: 'login',
-        component: LoginComponent,
-    },
+    { path: 'login', component: LoginComponent },
+    { path: 'odds', component: OddsInputComponent },
     { path: 'inputs', component: MatchInputComponent },
     { path: 'inputs/:date', component: MatchInputComponent },
-    {
-        path: 'summary',
-        component: MatchSummaryComponent,
-    },
+    { path: 'summary', component: MatchSummaryComponent },
+    { path: 'dashboard', component: DashboardComponent },
     // {
     //   path: "page/:page",
     //   component: InternalsComponent,
@@ -57,4 +55,4 @@ const routes: Routes = [
     ],
     exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
