@@ -1,10 +1,12 @@
 <div class="container">
     <input style="margin-top: 80px;" class="inputs" [(ngModel)]="date" type="date" (change)="change_date()">
-    <input class="desk_top inputs" [(ngModel)]="jsonFile" type="file" (input)="readJSON($event['target'])" accept="application/JSON">
+    <input class="desk_top inputs" [(ngModel)]="jsonFile" type="file" (input)="readJSON($event['target'])"
+        accept="application/JSON">
     <div class="wrapper_prog">
-        <div class="prog_line" [style]="'width:' + (complete / data.length) * 100 + '%'"></div>
-        <p class="prog_text">{{complete}}/{{data.length}}</p>
+        <div class="prog_line" [style]="'width:' + ((complete + unsaved_matches) / data.length) * 100 + '%'"></div>
+        <p class="prog_text">{{complete + unsaved_matches}}/{{data.length}}</p>
     </div>
+    <button *ngIf="unsaved_matches" class="btn" (click)="save_result()">Unsaved Matches | {{unsaved_matches}}</button>
     <table class="table">
         <thead>
             <tr>
@@ -19,10 +21,10 @@
         </thead>
         <tbody>
             <ng-container *ngFor="let element of data; let i = index">
-                <tr (click)="showMatch(element)">
-                    <td >
+                <tr *ngIf="element['complete'] == 0" (click)="showMatch(element)">
+                    <td>
                         <div class="d-flex">
-                            <div class="ribbon" [ngClass]="element['complete'] ? 'success':'failed'"></div>
+                            <div class="ribbon failed"></div>
                             {{element['start_time']}}
                         </div>
                     </td>
@@ -33,9 +35,40 @@
                     <td class='desk_top'>{{element['draw_odds']}}</td>
                     <td class='desk_top'>{{element['away_odds']}}</td>
                     <td class=''>{{element['ht_result'] || '-'}} / {{element['ft_result'] || '-'}}</td>
-                    <!-- <td class='text-right'>
-                        <button class="btn btn-primary" (click)="showMatch(element)">Edit</button>
-                    </td> -->
+                </tr>
+            </ng-container>
+            <ng-container *ngFor="let element of data; let i = index">
+                <tr *ngIf="element['complete'] == 2" (click)="showMatch(element)">
+                    <td>
+                        <div class="d-flex">
+                            <div class="ribbon unsaved"></div>
+                            {{element['start_time']}}
+                        </div>
+                    </td>
+                    <td>
+                        {{element['home_team']}} - {{element['away_team']}}
+                    </td>
+                    <td class='desk_top'>{{element['home_odds']}}</td>
+                    <td class='desk_top'>{{element['draw_odds']}}</td>
+                    <td class='desk_top'>{{element['away_odds']}}</td>
+                    <td class=''>{{element['ht_result'] || '-'}} / {{element['ft_result'] || '-'}}</td>
+                </tr>
+            </ng-container>
+            <ng-container *ngFor="let element of data; let i = index">
+                <tr *ngIf="element['complete'] == 1" (click)="showMatch(element)">
+                    <td>
+                        <div class="d-flex">
+                            <div class="ribbon success"></div>
+                            {{element['start_time']}}
+                        </div>
+                    </td>
+                    <td>
+                        {{element['home_team']}} - {{element['away_team']}}
+                    </td>
+                    <td class='desk_top'>{{element['home_odds']}}</td>
+                    <td class='desk_top'>{{element['draw_odds']}}</td>
+                    <td class='desk_top'>{{element['away_odds']}}</td>
+                    <td class=''>{{element['ht_result'] || '-'}} / {{element['ft_result'] || '-'}}</td>
                 </tr>
             </ng-container>
         </tbody>

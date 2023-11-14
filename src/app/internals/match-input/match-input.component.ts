@@ -18,7 +18,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
     //   ],
 })
 export class MatchInputComponent implements OnInit {
-    data = [];
+    data: any = [];
     selected_row = 0;
 
     day: any = new Date().getDate();
@@ -53,10 +53,12 @@ export class MatchInputComponent implements OnInit {
         window.location.reload();
     }
     complete = 0;
+    total = 0
     fetchMatches(date = this.date): void {
         this.api
             .get('get_day_matches?date=' + date)
             .then((res: any) => {
+                this.total = res['total']
                 this.data = res['matches'].filter((element: any) => {
                     element['complete'] = element['ht_result'] && element['ft_result'] ? 1 : 0;
                     return true;
@@ -64,46 +66,71 @@ export class MatchInputComponent implements OnInit {
                 this.data.sort((a: any, b: any) =>
                     a.start_time > b.start_time ? 1 : b.start_time > a.start_time ? -1 : 0
                 );
-                this.data.sort((a: any, b: any) =>
-                    a.complete > b.complete ? 1 : b.complete > a.complete ? -1 : 0
-                );
+                // this.data.sort((a: any, b: any) =>
+                //     a.complete > b.complete ? 1 : b.complete > a.complete ? -1 : 0
+                // );
+                this.unsaved_matches = 0
                 this.complete = this.data.filter((e: any) => e.complete).length;
             })
             .catch((e) => {
-                this.router.navigateByUrl('/login');
+                // this.router.navigateByUrl('/login');
                 console.log(e);
             });
     }
 
     showMatch(match: any) {
+        match['unsaved_matches'] = this.unsaved_matches
         const dialogRef = this.dialog.open(ShowMatchComponent, {
-            width: '700px',
+            width: '1200px',
             data: match,
         });
         dialogRef.afterClosed().subscribe((res: any) => {
-            if (res) {
-                this.ngOnInit();
+            if (res == 'DELETE') {
+                this.ngOnInit()
+            } else if (res) {
+                let index = this.data.indexOf(match)
+                this.data[index]['complete'] = 2
+                this.data[index]['ht_result'] = match['ht_result']
+                this.data[index]['ft_result'] = match['ft_result']
+                this.unsaved_update()
+
             }
         });
     }
 
-    ht_result = '0';
-    ft_result = '0';
-    save_result(match: any) {
-        match['ht_result'] = this.ht_result;
-        match['ft_result'] = this.ft_result;
+    unsaved_matches = 0
+    unsaved_update() {
+        this.unsaved_matches = this.data.filter((e: any) => e['complete'] == 2).length
+    }
+
+
+    // this.api
+    //     .put('update_match', {
+    //         id: match['id'],
+    //         ft_result: match['ft_result'],
+    //         ht_result: match['ht_result'],
+    //     })
+    //     .then((res: any) => {
+    //         this.dialogRef.close(true);
+    //     })
+    //     .catch((e: any) => {
+    //         console.log(e);
+    //     });
+
+
+    save_result() {
+        let payload = {
+            matches: this.data.filter((e: any) => e['complete'] == 2)
+        }
 
         this.api
-            .put('update_matches', [match])
+            .put('update_matches', payload)
             .then((res: any) => {
                 this.ngOnInit();
-                this.selected_row = 0;
-                this.ht_result = '0';
-                this.ft_result = '0';
             })
             .catch((e: any) => {
                 console.log(e);
-                this.router.navigateByUrl('/login');
+                // this.router.navigateByUrl('/login');
             });
     }
 
@@ -186,16 +213,16 @@ export class MatchInputComponent implements OnInit {
                 });
         }
 
-        let update_records = data.filter((e: any) => to_update_ids.includes(e['id']));
-        if (update_records.length) {
-            this.api
-                .put('update_matches', { matches: update_records })
-                .then((data) => {
-                    this.fetchMatches(this.date);
-                })
-                .catch((error: any) => {
-                    console.log(error);
-                });
-        }
+        // let update_records = data.filter((e: any) => to_update_ids.includes(e['id']));
+        // if (update_records.length) {
+        //     this.api
+        //         .put('update_matches', { matches: update_records })
+        //         .then((data) => {
+        //             this.fetchMatches(this.date);
+        //         })
+        //         .catch((error: any) => {
+        //             console.log(error);
+        //         });
+        // }
     }
 }

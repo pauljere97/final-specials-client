@@ -19,7 +19,6 @@ export class DashboardComponent {
       this.render_chart('homes_graph', 'Homes', this.make_days(res['games']['homes']))
       this.render_chart('aways_graph', 'Aways', this.make_days(res['games']['aways']))
       this.render_chart('draws_graph', 'Draws', this.make_days(res['games']['draws']))
-      console.log(this.make_days(res['games']['homes']))
     }).catch((e) => {
       console.log(e);
     });

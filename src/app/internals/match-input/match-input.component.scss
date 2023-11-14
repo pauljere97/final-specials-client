@@ -1,39 +1,55 @@
-.group_btns > *{
+.group_btns>* {
     margin: 0 3px 3px 0;
 }
-.group_btns{
+
+.group_btns {
     min-width: 120px;
 }
-.save_result{
+
+.save_result {
     min-width: 120px;
 }
+
 .ribbon {
     height: 20px;
     width: 10px;
     border-radius: 5px;
     margin-right: 6px;
 }
-.failed{ background-color: #dc3545 !important; }
-.success{ background: #3CA758 !important; }
 
-@media only screen and (max-width: 640px){
-	.desk_top{
+.failed {
+    background-color: #dc3545 !important;
+}
+
+.success {
+    background: #3CA758 !important;
+}
+
+.unsaved {
+    background: #ff9c07 !important;
+}
+
+@media only screen and (max-width: 640px) {
+    .desk_top {
         display: none !important;
     }
 }
-.wrapper_prog{
+
+.wrapper_prog {
     background-color: #dc3545;
     width: 100%;
     position: relative;
     margin-top: 7px;
 }
-.prog_line{
+
+.prog_line {
     position: absolute;
     height: 100%;
     background-color: #3CA758;
     transition: 1s
 }
-.prog_text{
+
+.prog_text {
     z-index: 2;
     position: relative;
     text-align: center;
@@ -42,7 +58,7 @@
     font-weight: 500;
 }
 
-.inputs{
+.inputs {
     background-color: white;
     width: 100%;
     padding: 10px;
@@ -54,11 +70,20 @@
     outline: none;
 }
 
-tr:hover{
-    td{
+tr:hover {
+    td {
         transition: 0.2s;
         color: white;
         background-color: #2196f3;
     }
+
     cursor: pointer;
+}
+
+.btn {
+    background-color: #ff9c07;
+    color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    cursor: pointer;
+    margin-bottom: 10px;
 }
