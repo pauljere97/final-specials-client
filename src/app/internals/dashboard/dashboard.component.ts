@@ -14,36 +14,62 @@ export class DashboardComponent {
   aways: any = null
   weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   data_object: any = {}
+  homes_total: any = 0
+  draws_total: any = 0
+  away_total: any = 0
   ngOnInit(): void {
     this.api.get('init_dashboard').then((res: any) => {
-      this.render_chart('homes_graph', 'Homes', this.make_days(res['games']['homes']))
-      this.render_chart('aways_graph', 'Aways', this.make_days(res['games']['aways']))
-      this.render_chart('draws_graph', 'Draws', this.make_days(res['games']['draws']))
+      console.log(res['odds']['homes'])
+      // console.log(this.make_days(res['games']['homes']))
+
+
+      this.homes_total = this.get_matches_total(res['games']['homes'])
+      this.draws_total = this.get_matches_total(res['games']['draws'])
+      this.away_total = this.get_matches_total(res['games']['aways'])
+      this.render_chart('homes_graph', 'Homes', this.make_days(res['games']['homes'], this.homes_total, res['odds']['homes']))
+      this.render_chart('draws_graph', 'Draws', this.make_days(res['games']['draws'], this.draws_total, res['odds']['draws']))
+      this.render_chart('aways_graph', 'Aways', this.make_days(res['games']['aways'], this.away_total, res['odds']['aways']))
     }).catch((e) => {
       console.log(e);
     });
-
+  }
+  get_matches_total(matches: any) {
+    let totals = [0, 0, 0, 0, 0, 0, 0]
+    for (const key in matches) {
+      if (Object.prototype.hasOwnProperty.call(matches, key)) {
+        matches[key].forEach((match: any) => {
+          totals[this.get_day_index(match['date'])] += 1
+        });
+      }
+    }
+    return totals
   }
 
-  make_days(data: any) {
+  make_days(data: any, total: any, odds: any) {
+    console.log(odds)
     let result = [
-      this.get_day_values(data['odd11']),
-      this.get_day_values(data['odd1x']),
-      this.get_day_values(data['odd12']),
-      this.get_day_values(data['oddx1']),
-      this.get_day_values(data['oddxx']),
-      this.get_day_values(data['oddx2']),
-      this.get_day_values(data['odd21']),
-      this.get_day_values(data['odd2x']),
-      this.get_day_values(data['odd22']),
+      this.get_day_values(data['odd11'], total, odds['odd11']),
+      this.get_day_values(data['odd1x'], total, odds['odd1x']),
+      this.get_day_values(data['odd12'], total, odds['odd12']),
+      this.get_day_values(data['oddx1'], total, odds['oddx1']),
+      this.get_day_values(data['oddxx'], total, odds['oddxx']),
+      this.get_day_values(data['oddx2'], total, odds['oddx2']),
+      this.get_day_values(data['odd21'], total, odds['odd21']),
+      this.get_day_values(data['odd2x'], total, odds['odd2x']),
+      this.get_day_values(data['odd22'], total, odds['odd22']),
     ]
     return result
   }
 
-  get_day_values(data: any) {
+  get_day_values(data: any, total: any, odd: any) {
     let day_matches: any = [0, 0, 0, 0, 0, 0, 0]
     day_matches.forEach((e: any, index: number) => {
-      day_matches[index] = (data.filter((e: any) => index == this.get_day_index(e['date']))).length
+      let matches = (data.filter((e: any) => index == this.get_day_index(e['date']))).length
+      // day_matches[index] = (((data.filter((e: any) => index == this.get_day_index(e['date']))).length) * odd) - total
+      day_matches[index] = (matches * odd) - total[index]
+      // day_matches[index] = (matches * odd) - total[index]
+      if (day_matches[index] < 0) day_matches[index] = 0
+      else day_matches[index] = ((day_matches[index] / total[index]) * 100)
     });
     return day_matches
   }
@@ -75,14 +101,21 @@ export class DashboardComponent {
         aspectRatio: this.set_aspect_ratio(),
         plugins: {
           legend: {
-            display: true, position: 'bottom', labels: {
-              usePointStyle: true,
-
-            }
+            display: true,
+            position: 'bottom',
+            labels: { usePointStyle: true }
           },
           title: { display: true, text: title },
         },
+        indexAxis: 'x',
+        scales: {
+          y: {
+            beginAtZero: true,
+            // stacked: true
+          }
+        }
       },
+
     })
   }
 
