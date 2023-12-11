@@ -11,11 +11,29 @@
     padding: 0 10px;
     border: none;
     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
-    position: relative // color: rgb(13, 109, 253);
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 @media only screen and (max-width: 700px) {
     .card {
         width: 95vw;
     }
+}
+
+.config_top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.config_top>* {
+    width: 50%;
+    margin: 5px;
+    margin-bottom: 0;
+}
+
+#dymanic_wrapper {
+    flex: 1;
 }

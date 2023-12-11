@@ -1,6 +1,33 @@
 <div>
     <br>
     <div class="graphs">
+        <div class="card">
+            <div class="config_top">
+                <mat-form-field>
+                    <mat-label>Type</mat-label>
+                    <mat-select (selectionChange)="change_dynamic_graph()" [(ngModel)]="selected_type">
+                        <mat-option [value]="1">Homes</mat-option>
+                        <mat-option [value]="'X'">Draws</mat-option>
+                        <mat-option [value]="2">Aways</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Day</mat-label>
+                    <mat-select (selectionChange)="change_dynamic_graph()" [(ngModel)]="selected_day">
+                        <mat-option [value]="0">Sunday</mat-option>
+                        <mat-option [value]="1">Monday</mat-option>
+                        <mat-option [value]="2">Tuesday</mat-option>
+                        <mat-option [value]="3">Wednesday</mat-option>
+                        <mat-option [value]="4">Thursday</mat-option>
+                        <mat-option [value]="5">Friday</mat-option>
+                        <mat-option [value]="6">Saturday</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div id="dymanic_wrapper">
+                <canvas id="dynamic_graph"></canvas>
+            </div>
+        </div>
         <div id="homes_wrapper" class="card">
             <canvas id="homes_graph"></canvas>
         </div>
@@ -10,5 +37,6 @@
         <div id="aways_wrapper" class="card">
             <canvas id="aways_graph"></canvas>
         </div>
+
     </div>
 </div>

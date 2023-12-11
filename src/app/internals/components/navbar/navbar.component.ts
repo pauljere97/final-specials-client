@@ -12,7 +12,6 @@ export class NavbarComponent {
     if (!location.href.includes('login')) {
       this.navbar = true
     }
-    console.log(location.href)
   }
 
   logout() {

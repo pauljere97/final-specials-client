@@ -5,5 +5,5 @@ const production = {
     baseUrl: 'https://laravel-test.czesttech.com/public/api/',
 };
 
-export const urls = development;
-// export const urls = production;
+// export const urls = development;
+export const urls = production;
