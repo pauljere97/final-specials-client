@@ -1,5 +1,7 @@
 <div>
     <br>
+    <br>
+    <br>
     <div class="graphs">
         <div class="card">
             <div class="config_top">
@@ -26,6 +28,12 @@
             </div>
             <div id="dymanic_wrapper">
                 <canvas id="dynamic_graph"></canvas>
+            </div>
+            <div class="recommends">
+                <div *ngFor="let element of recommendations" [style]="'background:' + element['color']"
+                    [matTooltip]="element['title']">
+                    {{element['occur']}} | {{element['avg']}}
+                </div>
             </div>
         </div>
         <div id="homes_wrapper" class="card">

@@ -66,9 +66,9 @@ export class DashboardComponent {
   }
 
   chart: any;
+
   render_chart(name: string, title: string, datasets: any) {
     this.chart = new Chart(name, {
-      // type: 'bar',
       type: 'line',
       data: {
         labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -108,6 +108,7 @@ export class DashboardComponent {
   set_aspect_ratio() {
     return window.innerWidth > 720 ? 0 : 1 / 1
   }
+
   data_sets(label: string, color: string, data: any, field: string) {
     let dataset = []
     for (const key in data) {
@@ -115,6 +116,7 @@ export class DashboardComponent {
         dataset.push(data[key][field])
       }
     }
+
     return {
       data: dataset,
       borderColor: color,
@@ -127,6 +129,7 @@ export class DashboardComponent {
   }
 
   get_dynamic_data(odds: any, matches: any) {
+    this.recommendations = []
     let type_string = this.selected_type == 1 ? 'homes' : this.selected_type == 'X' ? 'draws' : 'aways'
     odds = odds[type_string]
     matches = matches[this.selected_type].filter((element: any) => {
@@ -135,7 +138,6 @@ export class DashboardComponent {
     let labels = (matches.map((e: any) => e['date'])).sort()
     // labels = labels.map((e: any) => moment(e).toDate().toDateString().substring(4, 10))
     matches = matches.sort((a: any, b: any) => (a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0));
-    console.log(odds, matches)
 
     this.chart = new Chart('dynamic_graph', {
       // type: 'bar',
@@ -174,10 +176,9 @@ export class DashboardComponent {
       },
 
     })
-
   }
 
-  // "2/2", "#0dcaf0", 'odd22', labels, matches, odds)
+  recommendations: any = []
   dynamic_data(title: any, color: any, odd: any, labels: any, matches: any, odds: any) {
     let values = matches.map((element: any) => {
       let day_total = 0
@@ -195,6 +196,21 @@ export class DashboardComponent {
       return result
     });
 
+    let num = 0
+    let total = 0
+    values.forEach((element: number) => {
+      if (element > 0) num++
+      total += element
+    });
+    let obj = {
+      title: title,
+      occur: Math.ceil(num / values.length * 100),
+      avg: Math.ceil(total / values.length),
+      color: color,
+    }
+    if (obj['occur'] > 69) {
+      this.recommendations.push(obj)
+    }
     return {
       "data": values,
       "borderColor": color,
@@ -205,14 +221,13 @@ export class DashboardComponent {
     }
   }
 
+
   change_dynamic_graph() {
     const dymanic_wrapper = document.getElementById('dymanic_wrapper')
     if (dymanic_wrapper) {
       dymanic_wrapper.innerHTML = '<canvas id="dynamic_graph"></canvas>'
     }
     this.get_dynamic_data(this.odds, this.matches)
-
-    console.log("XXXXX", this.selected_type)
   }
 
 }

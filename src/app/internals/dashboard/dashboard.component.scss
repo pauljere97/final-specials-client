@@ -1,9 +1,10 @@
 .graphs {
-    margin-top: 50px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
+
 
 .card {
     width: 45vw;
@@ -36,4 +37,19 @@
 
 #dymanic_wrapper {
     flex: 1;
+}
+
+.recommends {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.recommends>div {
+    color: white;
+    text-align: center;
+    padding: 5px;
+    text-align: center;
+    margin: 5px;
+    border-radius: 5px;
 }
