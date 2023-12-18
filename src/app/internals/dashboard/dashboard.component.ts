@@ -199,7 +199,7 @@ export class DashboardComponent {
     let num = 0
     let total = 0
     values.forEach((element: number) => {
-      if (element > 0) num++
+      if (element > 30) num++
       total += element
     });
     let obj = {
