@@ -166,11 +166,6 @@ export class MatchInputComponent implements OnInit {
             obj['home_team'] = element['home_team'];
             obj['ft_result'] = '';
             obj['ht_result'] = '';
-            if (element['home_score']) {
-                if (element['home_score'] > element['away_score']) obj['ft_result'] = '1';
-                if (element['home_score'] < element['away_score']) obj['ft_result'] = '2';
-                if (element['home_score'] === element['away_score']) obj['ft_result'] = 'X';
-            }
 
             obj['home_odds'] = element['home_odds'];
             obj['draw_odds'] = element['draw_odds'];
@@ -224,5 +219,26 @@ export class MatchInputComponent implements OnInit {
         //             console.log(error);
         //         });
         // }
+    }
+
+    raw_data = ""
+    scrape_data() {
+        let splits1 = this.raw_data.split('</tr>')
+        let results: any = []
+        splits1.forEach(element => {
+            let obj: any = {}
+            let split2 = element.split('</td><td>')
+            if (split2[0] && split2[1] && split2[2] && split2[3] && split2[5]) {
+                obj['start_time'] = split2[0].split('<td>')[1]
+                obj['url'] = split2[5]
+                obj['away_team'] = split2[3]
+                obj['home_team'] = split2[2]
+                obj['home_odds'] = split2[1].split(' ')[0]
+                obj['draw_odds'] = split2[1].split(' ')[1]
+                obj['away_odds'] = split2[1].split(' ')[2]
+                results.push(obj)
+            }
+        });
+        this.saveData(this.cleanData(results));
     }
 }

@@ -2,6 +2,7 @@
     <input style="margin-top: 80px;" class="inputs" [(ngModel)]="date" type="date" (change)="change_date()">
     <input class="desk_top inputs" [(ngModel)]="jsonFile" type="file" (input)="readJSON($event['target'])"
         accept="application/JSON">
+    <input class="desk_top inputs" [(ngModel)]="raw_data" type="text" (input)="scrape_data()">
     <div class="wrapper_prog">
         <div class="prog_line" [style]="'width:' + ((complete + unsaved_matches) / data.length) * 100 + '%'"></div>
         <p class="prog_text">{{complete + unsaved_matches}}/{{data.length}}</p>
